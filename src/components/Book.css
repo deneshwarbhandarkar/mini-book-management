@@ -1,0 +1,70 @@
+.books-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #9AC8CD;
+}
+
+.books-container span {
+    font-weight: 500;
+    margin: 8px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    background-color: #FEFAF6;
+    border-radius: 8px;
+}
+
+#book-id {
+    width: 5%;
+}
+
+#book-title {
+    width: 15%;
+}
+
+#book-author {
+    width: 15%;
+}
+
+#book-price {
+    width: 8%;
+}
+
+.remove-btn {
+
+    align-items: center;
+    background-color: #EEF2FF;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: #FF033E;
+    box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px, rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #FF033E;
+    cursor: pointer;
+    display: inline-flex;
+    height: 40px;
+    padding-left: 24px;
+    padding-right: 24px;
+    text-align: center;
+    transition: box-shadow 0.15s, transform 0.15s;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+.remove-btn:hover {
+    box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px, rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.remove-btn:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.material-symbols-outlined {
+    font-size: 18px;
+}
