@@ -4,35 +4,34 @@ import AddBook from './components/AddBook';
 import Book from './components/Book';
 function App() {
 
-  let [id, setId] = useState("");
-  let [title, setTitle] = useState("");
-  let [author, setAuthor] = useState("");
-  let [price, setPrice] = useState("");
-
+  let [enteredId, setEnteredId] = useState("");
+  let [enteredTitle, setEnteredTitle] = useState("");
+  let [enteredAuthor, setEnteredAuthor] = useState("");
+  let [enteredPrice, setEnteredPrice] = useState("");
   let [books, setBooks] = useState([
     {
       id: 1,
       title: "Dragon Ball",
       author: "Akira Toriyama",
-      price: '400/- Rs'
+      price: '400'
     },
     {
       id: 2,
       title: "One Piece",
       author: "Eichiro Oda",
-      price: "600/- Rs"
+      price: "600"
     },
     {
       id: 3,
       title: "Naruto",
       author: "Kishimoto",
-      price: "300/- Rs"
+      price: "300"
     },
     {
       id: 4,
       title: "Vagabond",
       author: "Takehito Inoue",
-      price: "800/- Rs"
+      price: "800"
     }
   ]);
 
@@ -42,17 +41,29 @@ function App() {
     });
     setBooks(newBooks);
   }
-  function handleSubmit() {
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    let book = {
+      id: enteredId,
+      title: enteredTitle,
+      author: enteredAuthor,
+      price: enteredPrice
+    };
+
+    let newBooks = [...books];
+    newBooks.push(book);
+
+    setBooks(newBooks);
   }
 
   return (
     <div className='main-container'>
       <AddBook handleSubmit={handleSubmit}
-        setId={setId}
-        setTitle={setTitle}
-        setAuthor={setAuthor}
-        setPrice={setPrice} />
+        setEnteredId={setEnteredId}
+        setEnteredTitle={setEnteredTitle}
+        setEnteredAuthor={setEnteredAuthor}
+        setEnteredPrice={setEnteredPrice} />
 
       {books.map((book) => {
         return <Book id={book.id}
