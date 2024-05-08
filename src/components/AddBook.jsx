@@ -4,18 +4,18 @@ import "./AddBook.css";
 function AddBook(props) {
 
     function handleChangeId(event) {
-        props.setId(event.target.value);
+        props.setEnteredId(event.target.value);
     }
     function handleChangeTitle(event) {
-        props.setTitle(event.target.value);
+        props.setEnteredTitle(event.target.value);
     }
 
     function handleChangeAuthor(event) {
-        props.setAuthor(event.target.value);
+        props.setEnteredAuthor(event.target.value);
     }
 
     function handleChangePrice(event) {
-        props.setprice(event.target.value);
+        props.setEnteredPrice(event.target.value);
     }
 
 

@@ -68,3 +68,55 @@
 .material-symbols-outlined {
     font-size: 18px;
 }
+
+#input-id {
+    width: 5%;
+}
+
+#input-title {
+    width: 15%;
+}
+
+#input-author {
+    width: 15%;
+}
+
+#input-price {
+    width: 8%;
+}
+
+.books-container input {
+    margin: 8px;
+    padding: 5px;
+}
+
+
+.update-btn {
+
+    align-items: center;
+    background-color: #EEF2FF;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: #0d73f0;
+    box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px, rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #0d73f0;
+    cursor: pointer;
+    display: inline-flex;
+    height: 40px;
+    padding-left: 24px;
+    padding-right: 24px;
+    text-align: center;
+    transition: box-shadow 0.15s, transform 0.15s;
+    font-size: 18px;
+    font-weight: 500;
+}
+.update-btn:hover {
+    box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px, rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.update-btn:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
