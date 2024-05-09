@@ -70,9 +70,12 @@ function App() {
           title={book.title}
           author={book.author}
           price={book.price}
-          handleRemove={handleRemove}></Book>;
+          handleRemove={handleRemove}
+          books={books}
+          setBooks={setBooks} >
+        </Book>;
       })}
-    </div>
+    </div >
   );
 }
 

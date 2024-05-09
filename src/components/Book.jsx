@@ -2,16 +2,50 @@ import { useState } from "react";
 import "./Book.css";
 
 function Book(props) {
-    let [idContent, setIdContent] = useState(<span id="book-id">{props.id}</span>);
-    let [titleContent, setTitleContent] = useState(<span id="book-title">{props.title}</span>);
-    let [authorContent, setAuthorContent] = useState(<span id="book-author">{props.author}</span>);
-    let [priceContent, setPriceContent] = useState(<span id="book-price">{props.price}</span>);
+    let [isUpdating, setIsUpdating] = useState(false);
+    let [updatedId, setUpdateId] = useState(props.id);
+    let [updatedTitle, setUpdatedTitle] = useState(props.title);
+    let [updatedAuthor, setUpdatedAuthor] = useState(props.author);
+    let [updatedPrice, setUpdatedPrice] = useState(props.price);
 
     function handleUpdate() {
-        setIdContent(<input type="number" id="input-id" />);
-        setTitleContent(<input type="text" id="input-title" />);
-        setAuthorContent(<input type="text" id="input-author" />);
-        setPriceContent(<input type="number" id="input-price" />);
+        let book;
+        if (isUpdating === true) {
+            book = {
+                id: updatedId,
+                title: updatedTitle,
+                author: updatedAuthor,
+                price: updatedPrice
+            };
+
+            let newBooks = [...props.books];
+            newBooks.map((element, idx) => {
+                if (element.id === book.id) {
+                    newBooks.splice(idx, 1, book);
+                }
+            });
+            props.setBooks(newBooks);
+            setIsUpdating(false);
+        }
+        else {
+            setIsUpdating(true);
+        }
+    }
+
+    function handleIdChange(event) {
+        setUpdateId(event.target.value);
+    }
+
+    function handleTitleChange(event) {
+        setUpdatedTitle(event.target.value);
+    }
+
+    function handleAuthorChange(event) {
+        setUpdatedAuthor(event.target.value);
+    }
+
+    function handlePriceChange(event) {
+        setUpdatedPrice(event.target.value);
     }
 
 
@@ -19,13 +53,42 @@ function Book(props) {
 
     return (
         <div className="books-container">
-            {idContent}
-            {titleContent}
-            {authorContent}
-            {priceContent}
+
+            {isUpdating ? <input
+                type="number"
+                id="input-id"
+                onChange={handleIdChange}
+                value={updatedId} />
+                :
+                <span id="book-id">{props.id}</span>}
+
+            {isUpdating ? <input
+                type="text"
+                id="input-title"
+                onChange={handleTitleChange}
+                value={updatedTitle} />
+                :
+                <span id="book-title">{props.title}</span>}
+
+            {isUpdating ? <input
+                type="text"
+                id="input-author"
+                onChange={handleAuthorChange}
+                value={updatedAuthor} />
+                :
+                <span id="book-title">{props.author}</span>}
+
+            {isUpdating ? <input
+                type="number"
+                id="input-price"
+                onChange={handlePriceChange}
+                value={updatedPrice} />
+                :
+                <span id="book-title">{props.price}</span>}
+
             <button type="button" className="remove-btn" onClick={() => { props.handleRemove(props.id); }} ><span class="material-symbols-outlined">delete
             </span>Remove</button>
-            <button type="button" className="update-btn" onClick={handleUpdate} >Update</button>
+            <button type="button" className="update-btn" onClick={handleUpdate} >{isUpdating ? "Save" : "Update"}</button>
         </div >
     );
 }
