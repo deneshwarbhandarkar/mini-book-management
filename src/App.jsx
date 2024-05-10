@@ -40,6 +40,10 @@ function App() {
       return element.id !== id;
     });
     setBooks(newBooks);
+    <h1>Book Managment System</h1>;
+    setTimeout(() => {
+      alert("Book Removed Successfully.!!");
+    }, 50);
   }
 
   function handleSubmit(event) {
@@ -55,10 +59,15 @@ function App() {
     newBooks.push(book);
 
     setBooks(newBooks);
+    setTimeout(() => {
+
+      alert("Book Added Successfully!!");
+    }, 50);
   }
 
   return (
     <div className='main-container'>
+      <h1>Book Managment System</h1>
       <AddBook handleSubmit={handleSubmit}
         setEnteredId={setEnteredId}
         setEnteredTitle={setEnteredTitle}

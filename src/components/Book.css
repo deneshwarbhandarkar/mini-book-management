@@ -111,6 +111,7 @@
     font-size: 18px;
     font-weight: 500;
 }
+
 .update-btn:hover {
     box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px, rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     transform: translateY(-2px);
@@ -119,4 +120,24 @@
 .update-btn:active {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
+}
+
+@media (max-width: 480px) {
+    .books-container {
+        display: flex;
+        flex-direction: column;
+    }
+    #book-title,#book-author{
+        width: 200px;
+    }
+    #book-id{
+        width: 50px;
+    }
+    #input-title,#input-author{
+        width: 200px;
+    }
+    #input-id{
+        width: 50px;
+    }
+
 }
