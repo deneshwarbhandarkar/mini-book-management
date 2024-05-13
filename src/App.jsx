@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import AddBook from './components/AddBook';
 import Book from './components/Book';
@@ -8,33 +8,19 @@ function App() {
   let [enteredTitle, setEnteredTitle] = useState("");
   let [enteredAuthor, setEnteredAuthor] = useState("");
   let [enteredPrice, setEnteredPrice] = useState("");
-  let [books, setBooks] = useState([
-    {
-      id: 1,
-      title: "Dragon Ball",
-      author: "Akira Toriyama",
-      price: '400'
-    },
-    {
-      id: 2,
-      title: "One Piece",
-      author: "Eichiro Oda",
-      price: "600"
-    },
-    {
-      id: 3,
-      title: "Naruto",
-      author: "Kishimoto",
-      price: "300"
-    },
-    {
-      id: 4,
-      title: "Vagabond",
-      author: "Takehito Inoue",
-      price: "800"
-    }
-  ]);
+  let [books, setBooks] = useState(null);
 
+
+  //Fetching database file using API 
+  useEffect(() => {
+    fetch("http://localhost:8000/books").then((response) => {
+      return response.json();
+    }).then((data) => {
+      setBooks(data);
+      console.log(data);
+    });
+
+  }, []);
   function handleRemove(id) {
     let newBooks = books.filter((element) => {
       return element.id !== id;
@@ -55,14 +41,18 @@ function App() {
       price: enteredPrice
     };
 
-    let newBooks = [...books];
-    newBooks.push(book);
-
-    setBooks(newBooks);
-    setTimeout(() => {
-
-      alert("Book Added Successfully!!");
-    }, 50);
+    //Sending data to database.json file
+    fetch('http://localhost:8000/books', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(book)
+    }).then(() => {
+      let newBooks = [...books];
+      newBooks.push(book);
+      setBooks(newBooks);
+    });
   }
 
   return (
@@ -74,16 +64,17 @@ function App() {
         setEnteredAuthor={setEnteredAuthor}
         setEnteredPrice={setEnteredPrice} />
 
-      {books.map((book) => {
-        return <Book id={book.id}
-          title={book.title}
-          author={book.author}
-          price={book.price}
-          handleRemove={handleRemove}
-          books={books}
-          setBooks={setBooks} >
-        </Book>;
-      })}
+      {
+        books && books.map((book) => {
+          return <Book id={book.id}
+            title={book.title}
+            author={book.author}
+            price={book.price}
+            handleRemove={handleRemove}
+            books={books}
+            setBooks={setBooks} >
+          </Book>;
+        })}
     </div >
   );
 }
