@@ -17,15 +17,22 @@ function Book(props) {
                 author: updatedAuthor,
                 price: updatedPrice
             };
-
-            let newBooks = [...props.books];
-            newBooks.map((element, idx) => {
-                if (element.id === book.id) {
-                    newBooks.splice(idx, 1, book);
-                }
+            fetch(`http://localhost:8000/books/${props.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(book)
+            }).then(() => {
+                let newBooks = [...props.books];
+                newBooks.map((element, idx) => {
+                    if (element.id === book.id) {
+                        newBooks.splice(idx, 1, book);
+                    }
+                });
+                props.setBooks(newBooks);
+                setIsUpdating(false);
             });
-            props.setBooks(newBooks);
-            setIsUpdating(false);
         }
         else {
             setIsUpdating(true);
@@ -76,7 +83,7 @@ function Book(props) {
                 onChange={handleAuthorChange}
                 value={updatedAuthor} />
                 :
-                <span id="book-title">{props.author}</span>}
+                <span id="book-author">{props.author}</span>}
 
             {isUpdating ? <input
                 type="number"
@@ -84,7 +91,7 @@ function Book(props) {
                 onChange={handlePriceChange}
                 value={updatedPrice} />
                 :
-                <span id="book-title">{props.price}</span>}
+                <span id="book-price">{props.price}</span>}
 
             <button type="button" className="remove-btn" onClick={() => { props.handleRemove(props.id); }} ><span class="material-symbols-outlined">delete
             </span>Remove</button>

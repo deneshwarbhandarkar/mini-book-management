@@ -1,4 +1,5 @@
 .add-book-container {
+    width: 100vw;
     display: flex;
     justify-content: space-evenly;
     background-color: #E1ACAC;
@@ -52,16 +53,18 @@ input::placeholder {
 @media (max-width: 480px) {
     .add-book-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     input[type=submit] {
         position: relative;
-        left:35%;
-      
+        left: 35%;
+
     }
-    input[type=text],input[type=number]{
-        margin-left: 40px;
+
+    input[type=text],
+    input[type=number] {
+        margin-left: 80px;
     }
 
 }

@@ -23,10 +23,10 @@ function AddBook(props) {
         <div className="add-book-container">
             <div className="form" >
                 <form action="" onSubmit={props.handleSubmit}>
-                    <input type="number" placeholder="Enter ID" required onChange={handleChangeId} />
-                    <input type="text" placeholder="Enter Title" required onChange={handleChangeTitle} />
-                    <input type="text" placeholder="Enter Author" required onChange={handleChangeAuthor} />
-                    <input type="number" placeholder="Enter Price" required onChange={handleChangePrice} />
+                    <input type="number" placeholder="Enter ID" required onChange={handleChangeId} value={props.enteredId} />
+                    <input type="text" placeholder="Enter Title" required onChange={handleChangeTitle} value={props.enteredTitle} />
+                    <input type="text" placeholder="Enter Author" required onChange={handleChangeAuthor} value={props.enteredAuthor} />
+                    <input type="number" placeholder="Enter Price" required onChange={handleChangePrice} value={props.enteredPrice} />
                     <input type="submit" value="+ Add"  ></input>
 
                 </form>

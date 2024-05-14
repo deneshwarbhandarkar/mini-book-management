@@ -22,6 +22,7 @@ function App() {
 
   }, []);
   function handleRemove(id) {
+    /*
     let newBooks = books.filter((element) => {
       return element.id !== id;
     });
@@ -30,6 +31,15 @@ function App() {
     setTimeout(() => {
       alert("Book Removed Successfully.!!");
     }, 50);
+    */
+    fetch(`http://localhost:8000/books/${id}`, {
+      method: "DELETE"
+    }).then(() => {
+      let newBooks = books.filter((element) => {
+        return element.id !== id;
+      });
+      setBooks(newBooks);
+    });
   }
 
   function handleSubmit(event) {
@@ -52,6 +62,10 @@ function App() {
       let newBooks = [...books];
       newBooks.push(book);
       setBooks(newBooks);
+      setEnteredId("");
+      setEnteredTitle("");
+      setEnteredAuthor("");
+      setEnteredPrice("");
     });
   }
 
@@ -62,7 +76,11 @@ function App() {
         setEnteredId={setEnteredId}
         setEnteredTitle={setEnteredTitle}
         setEnteredAuthor={setEnteredAuthor}
-        setEnteredPrice={setEnteredPrice} />
+        setEnteredPrice={setEnteredPrice}
+        enteredId={enteredId}
+        enteredTitle={enteredTitle}
+        enteredAuthor={enteredAuthor}
+        enteredPrice={enteredPrice} ></AddBook>
 
       {
         books && books.map((book) => {
