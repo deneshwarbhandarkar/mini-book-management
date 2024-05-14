@@ -8,7 +8,7 @@
     },
     {
       "id": "6",
-      "title": "Jujutsu Kaise",
+      "title": "Jujutsu Kaisen",
       "author": "Gege",
       "price": "200"
     },
@@ -16,6 +16,12 @@
       "id": "7",
       "title": "Who Moved My Cheese",
       "author": "Spencer Jhonson",
+      "price": "250"
+    },
+    {
+      "id": "8",
+      "title": "Ikigai",
+      "author": "Hector",
       "price": "250"
     }
   ]

@@ -18,7 +18,7 @@
     margin: 8px;
     padding: 5px;
     display: flex;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     background-color: #FEFAF6;
     border-radius: 8px;
 }
@@ -131,30 +131,4 @@
 .update-btn:active {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
-}
-
-@media (max-width: 480px) {
-    .books-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    #book-title,
-    #book-author {
-        width: 200px;
-    }
-
-    #book-id {
-        width: 50px;
-    }
-
-    #input-title,
-    #input-author {
-        width: 200px;
-    }
-
-    #input-id {
-        width: 50px;
-    }
-
 }

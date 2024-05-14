@@ -49,22 +49,3 @@ input::placeholder {
     font-size: 18px;
     font-weight: 500;
 }
-
-@media (max-width: 480px) {
-    .add-book-container {
-        display: flex;
-        flex-direction: row;
-    }
-
-    input[type=submit] {
-        position: relative;
-        left: 35%;
-
-    }
-
-    input[type=text],
-    input[type=number] {
-        margin-left: 80px;
-    }
-
-}
