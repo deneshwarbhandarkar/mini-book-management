@@ -1,32 +1,54 @@
+import { useState } from "react";
 import "./AddBook.css";
 
 
 function AddBook(props) {
 
+    let [enteredId, setEnteredId] = useState("");
+    let [enteredTitle, setEnteredTitle] = useState("");
+    let [enteredAuthor, setEnteredAuthor] = useState("");
+    let [enteredPrice, setEnteredPrice] = useState("");
+
     function handleChangeId(event) {
-        props.setEnteredId(event.target.value);
+        setEnteredId(event.target.value);
     }
     function handleChangeTitle(event) {
-        props.setEnteredTitle(event.target.value);
+        setEnteredTitle(event.target.value);
     }
 
     function handleChangeAuthor(event) {
-        props.setEnteredAuthor(event.target.value);
+        setEnteredAuthor(event.target.value);
     }
 
     function handleChangePrice(event) {
-        props.setEnteredPrice(event.target.value);
+        setEnteredPrice(event.target.value);
     }
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        let book = {
+            id: enteredId,
+            title: enteredTitle,
+            author: enteredAuthor,
+            price: enteredPrice
+        };
+
+        props.handleSubmit(book);
+
+        setEnteredId("");
+        setEnteredPrice("");
+        setEnteredTitle("");
+        setEnteredAuthor("");
+    }
 
     return (
         <div className="add-book-container">
             <div className="form" >
-                <form action="" onSubmit={props.handleSubmit}>
-                    <input type="number" placeholder="Enter ID" required onChange={handleChangeId} value={props.enteredId} />
-                    <input type="text" placeholder="Enter Title" required onChange={handleChangeTitle} value={props.enteredTitle} />
-                    <input type="text" placeholder="Enter Author" required onChange={handleChangeAuthor} value={props.enteredAuthor} />
-                    <input type="number" placeholder="Enter Price" required onChange={handleChangePrice} value={props.enteredPrice} />
+                <form action="" onSubmit={handleSubmit}>
+                    <input type="number" placeholder="Enter ID" required onChange={handleChangeId} value={enteredId} />
+                    <input type="text" placeholder="Enter Title" required onChange={handleChangeTitle} value={enteredTitle} />
+                    <input type="text" placeholder="Enter Author" required onChange={handleChangeAuthor} value={enteredAuthor} />
+                    <input type="number" placeholder="Enter Price" required onChange={handleChangePrice} value={enteredPrice} />
                     <input type="submit" value="+ Add"  ></input>
 
                 </form>

@@ -23,6 +23,18 @@
       "title": "Ikigai",
       "author": "Hector",
       "price": "250"
+    },
+    {
+      "id": "9",
+      "title": "One Piece",
+      "author": "Oda",
+      "price": "250"
+    },
+    {
+      "id": "10",
+      "title": "Naruto",
+      "author": "Kishimoto",
+      "price": "230"
     }
   ]
 }

@@ -2,36 +2,19 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import AddBook from './components/AddBook';
 import Book from './components/Book';
+import useFetch from "./useFetch";
 function App() {
 
-  let [enteredId, setEnteredId] = useState("");
-  let [enteredTitle, setEnteredTitle] = useState("");
-  let [enteredAuthor, setEnteredAuthor] = useState("");
-  let [enteredPrice, setEnteredPrice] = useState("");
+
+  let { data, error } = useFetch('http://localhost:8000/books');
   let [books, setBooks] = useState(null);
 
-
-  //Fetching database file using API 
   useEffect(() => {
-    fetch("http://localhost:8000/books").then((response) => {
-      return response.json();
-    }).then((data) => {
-      setBooks(data);
-      console.log(data);
-    });
+    setBooks(data);
+  }, [data]);
 
-  }, []);
   function handleRemove(id) {
-    /*
-    let newBooks = books.filter((element) => {
-      return element.id !== id;
-    });
-    setBooks(newBooks);
-    <h1>Book Managment System</h1>;
-    setTimeout(() => {
-      alert("Book Removed Successfully.!!");
-    }, 50);
-    */
+
     fetch(`http://localhost:8000/books/${id}`, {
       method: "DELETE"
     }).then(() => {
@@ -42,45 +25,28 @@ function App() {
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    let book = {
-      id: enteredId,
-      title: enteredTitle,
-      author: enteredAuthor,
-      price: enteredPrice
-    };
-
-    //Sending data to database.json file
+  function handleSubmit(book) {
     fetch('http://localhost:8000/books', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(book)
-    }).then(() => {
-      let newBooks = [...books];
-      newBooks.push(book);
-      setBooks(newBooks);
-      setEnteredId("");
-      setEnteredTitle("");
-      setEnteredAuthor("");
-      setEnteredPrice("");
-    });
+    })
+      .then(() => {
+        let newBooks = [...books];
+        newBooks.push(book);
+        setBooks(newBooks);
+      })
+      .catch(error => {
+        console.error('Error adding book:', error);
+      });
   }
 
   return (
     <div className='main-container'>
       <h1>Book Managment System</h1>
-      <AddBook handleSubmit={handleSubmit}
-        setEnteredId={setEnteredId}
-        setEnteredTitle={setEnteredTitle}
-        setEnteredAuthor={setEnteredAuthor}
-        setEnteredPrice={setEnteredPrice}
-        enteredId={enteredId}
-        enteredTitle={enteredTitle}
-        enteredAuthor={enteredAuthor}
-        enteredPrice={enteredPrice} ></AddBook>
+      <AddBook handleSubmit={handleSubmit} />
 
       {
         books && books.map((book) => {
@@ -94,7 +60,9 @@ function App() {
           </Book>;
         })}
     </div >
+
   );
 }
+
 
 export default App;
