@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import AddBook from './components/AddBook';
 import Book from './components/Book';
+import Navbar from "./components/Navbar"
 import useFetch from "./useFetch";
 function App() {
 
@@ -45,7 +46,8 @@ function App() {
 
   return (
     <div className='main-container'>
-      <h1>Book Managment System</h1>
+      <Navbar />
+      {/* <h1>Book Managment System</h1> */}
       <AddBook handleSubmit={handleSubmit} />
 
       {
