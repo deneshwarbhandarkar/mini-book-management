@@ -1,66 +1,23 @@
-import { useEffect, useState } from 'react';
+
 import './App.css';
-import AddBook from './components/AddBook';
-import Book from './components/Book';
-import Navbar from "./components/Navbar"
-import useFetch from "./useFetch";
+import Navbar from "./components/Navbar";
+import { Routes, Route } from 'react-router-dom';
+import Categories from './pages/Categories';
+import Suppliers from './pages/Suppliers';
+import Home from './pages/Home';
 function App() {
-
-
-  let { data, error } = useFetch('http://localhost:8000/books');
-  let [books, setBooks] = useState(null);
-
-  useEffect(() => {
-    setBooks(data);
-  }, [data]);
-
-  function handleRemove(id) {
-
-    fetch(`http://localhost:8000/books/${id}`, {
-      method: "DELETE"
-    }).then(() => {
-      let newBooks = books.filter((element) => {
-        return element.id !== id;
-      });
-      setBooks(newBooks);
-    });
-  }
-
-  function handleSubmit(book) {
-    fetch('http://localhost:8000/books', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(book)
-    })
-      .then(() => {
-        let newBooks = [...books];
-        newBooks.push(book);
-        setBooks(newBooks);
-      })
-      .catch(error => {
-        console.error('Error adding book:', error);
-      });
-  }
 
   return (
     <div className='main-container'>
       <Navbar />
-      {/* <h1>Book Managment System</h1> */}
-      <AddBook handleSubmit={handleSubmit} />
 
-      {
-        books && books.map((book) => {
-          return <Book id={book.id}
-            title={book.title}
-            author={book.author}
-            price={book.price}
-            handleRemove={handleRemove}
-            books={books}
-            setBooks={setBooks} >
-          </Book>;
-        })}
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/Categories" element={<Categories />}></Route>
+        <Route path="/Suppliers" element={<Suppliers />}></Route>
+      </Routes>
+
+
     </div >
 
   );
